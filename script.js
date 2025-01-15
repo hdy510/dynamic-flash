@@ -570,6 +570,290 @@ document.addEventListener("DOMContentLoaded", (event) => {
             //     })
 
 
+            //  1. 1스크롤에 블러 제품 이미지 확대
+            const tl1 = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.section1',
+                    start: '-200 top',
+                    markers: true,
+                    invalidateOnRefresh: true,
+                },
+            });
+            tl1.to('.conMain-products', {
+                scale: 1,
+                opacity: 1,
+                filter: 'blur(0px)',
+            })
+            .set('.conMain-ellipseBox', {
+                borderRadius: '50%',
+                rotate: '-15deg',
+                width: '10vw',
+                height: '5vw',
+            })
+            .to('.conMain-ellipseBox', {
+                width: '180vw',
+                height: '180vh',
+                opacity: 1,
+            })
+                .to(
+                    '.conMain-text.beMore',
+                    {
+                        right: '8vw',
+                    },
+                    '<'
+                )
+                .to(
+                    '.conMain-text.dynamic',
+                    {
+                        left: '8vw',
+                    },
+                    '<'
+                );
+
+            
+
+            // 2. conMain-products2 제품 설명 텍스트 등장
+            var puffCounter = { var: 0 };
+            var count = document.getElementById('count');
+            const tl2 = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.section2',
+                    start: '-500 top',
+                    // scrub: 2,
+                    markers: true,
+                    invalidateOnRefresh: true,
+                },
+            });
+            tl2.fromTo(
+                '.conMain-text2',
+                {
+                    x: -100,
+                    opacity: 0,
+                },
+                {
+                    x: 0,
+                    opacity: 1,
+                }
+            )
+            .fromTo(
+                '.conMain-text3',
+                {
+                    x: 100,
+                    opacity: 0,
+                },
+                {
+                    x: 0,
+                    opacity: 1,
+                }
+            )
+            .to(puffCounter, {
+              var: 10000,
+              duration: 2,
+              onUpdate: function() {
+                count.innerHTML = Math.ceil(puffCounter.var);
+              },})
+            .fromTo(
+                '.conMain-text4',
+                {
+                    x: 100,
+                    opacity: 0,
+                },
+                {
+                    x: 0,
+                    opacity: 1,
+                }
+            ,"<30%");
+           
+
+            // 3. 하단 설명 텍스트 등장
+            const tl3 = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.conMain-products3',
+                    start: '-500 top',
+                    markers: true,
+                    invalidateOnRefresh: true,
+                },
+            });
+            tl3.to('.conMain-products3', {
+                    opacity: 1,
+                })
+                .fromTo(
+                    '.conMain-text5',
+                    {
+                        x: -100,
+                        opacity: 0,
+                    },
+                    {
+                        x: 0,
+                        opacity: 1,
+                    }
+                )
+                .fromTo(
+                    '.conMain-text6',
+                    {
+                        x: 100,
+                        opacity: 0,
+                    },
+                    {
+                        x: 0,
+                        opacity: 1,
+                    }
+                );
+
+                
+            // 4. bestQuality 화면 등장
+            const tl4 = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.section3',
+                    start: '0 top',
+                    end: '10000 bottom',
+                    markers: true,
+                    invalidateOnRefresh: true,
+                    scrub: 1,
+                    pin: true,
+                },
+            });
+            tl4.to('.conQuality-bestQuality', {
+                    opacity: 1,
+                    top: '32%',
+                    transform: 'translate(-50%, -50%) scale(0.3)',
+                })
+                .to(
+                    '.conQuality-bg.orange',
+                    {
+                        backgroundColor: '#FF560E',
+                    },
+                    '<10%'
+                )
+                .to('.conQuality-bestQuality img.afterimage', {
+                    opacity: 0,
+                    transform: 'scale(1.3)',
+                })
+                .to('.conQuality-text1 .detail.index0', {
+                    opacity: 1,
+                })
+                .to(
+                    '.conQuality-text1 .detail.index1',
+                    {
+                        opacity: 1,
+                    }
+                )
+                .to(
+                    '.conQuality-bg.purple',
+                    {
+                        x: '-100%',
+                    }
+                )
+                .to(
+                    '.conQuality-bg.purple',
+                    {
+                        x: '-100%',
+                    },
+                )
+                .to(
+                    '.conQuality-bg.blue',
+                    {
+                        x: '-100%',
+                    },
+                )
+                .to(
+                    '.conQuality-bg.blue2',
+                    {
+                        x: '-100%',
+                        delay: 1.5,
+                    },
+                )
+                .to(
+                    '.conQuality-text4 .detail span ',
+                    {
+                        opacity: 1,
+                        stagger: {
+                            each: 0.06,
+                        },
+                    }
+                )
+                
+            // 5. conQuality-experts 등장
+            const tl5 = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.section4',
+                    start: '-500 top',
+                    markers: true,
+                    invalidateOnRefresh: true,
+                },
+            });
+            tl5.to(
+                    '.conQuality-experts-text .detail.index0',
+                    {
+                        opacity: 1,
+                })
+                .to(
+                    '.conQuality-experts .imgExpertsWrap',
+                    {
+                        opacity: 1,
+                    },
+                    '<'
+                )
+                .to('.conQuality-experts-text .detail.index1', {
+                    opacity: 1,
+                });
+
+            // 6. conFlavor 등장
+            const tl6 = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.section5',
+                    start: '0 top',
+                    markers: true,
+                    // invalidateOnRefresh: true, 설정하면 안보임
+                },
+            });
+            tl6.to('.conFlavor', {
+                opacity: 1,
+            });
+
+
+            // 7. aboutUs 등장
+            const tl7 = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.section6',
+                start: '0 top',
+                markers: true,
+                invalidateOnRefresh: true,
+            },
+            });
+            tl7.to(".conAboutUs", {
+            opacity: 1,
+            zIndex: 10,
+            })
+            .to(".conAboutUs-title", {
+                opacity: 1,
+                duration: 1,
+            })
+            .to(".conAboutUs-descriptionBox img", {
+                opacity: 1,
+                duration: 1,
+            })
+            .to(".conAboutUs-descriptionBox .introduce", {
+                opacity: 1,
+                duration: 1,
+            })
+            .to(".conAboutUs-descriptionBox .promise", {
+                opacity: 1,
+                duration: 1,
+            })
+            .to(".conAboutUs-descriptionBox button", {
+                opacity: 1,
+                duration: 1,
+            })
+            .to(".conAboutUs .topBtn", {
+                opacity: 1,
+                duration: 1,
+            }, "<")
+            .to(".conAboutUs footer", {
+                opacity: 1,
+                duration: 1,
+            }, "<")
+
 
 
 
@@ -1103,19 +1387,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
             //     opacity: 1,
             //     })
 
-
-
-
-
-
-
-        } else {
-            // ##########################데스크탑 구간
             //  1. 1스크롤에 블러 제품 이미지 확대
             const tl1 = gsap.timeline({
                 scrollTrigger: {
                     trigger: '.section1',
-                    start: '-200 top',
+                    start: '-170 top',
                     markers: true,
                     invalidateOnRefresh: true,
                 },
@@ -1125,17 +1401,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 opacity: 1,
                 filter: 'blur(0px)',
             })
-            .set('.conMain-ellipseBox', {
-                borderRadius: '50%',
-                rotate: '-15deg',
-                width: '10vw',
-                height: '5vw',
-            })
-            .to('.conMain-ellipseBox', {
-                width: '180vw',
-                height: '180vh',
-                opacity: 1,
-            })
+            // .set('.conMain-ellipseBox', {
+            //     borderRadius: '50%',
+            //     rotate: '-15deg',
+            //     width: '10vw',
+            //     height: '5vw',
+            // })
+            // .to('.conMain-ellipseBox', {
+            //     width: '180vw',
+            //     height: '180vh',
+            //     opacity: 1,
+            // })
                 .to(
                     '.conMain-text.beMore',
                     {
@@ -1153,10 +1429,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
             
 
-            // 4. conMain-products2 제품 설명 텍스트 등장
+            // 2. conMain-products2 제품 설명 텍스트 등장
             var puffCounter = { var: 0 };
             var count = document.getElementById('count');
-            const tl4 = gsap.timeline({
+            const tl2 = gsap.timeline({
                 scrollTrigger: {
                     trigger: '.section2',
                     start: '-500 top',
@@ -1165,7 +1441,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     invalidateOnRefresh: true,
                 },
             });
-            tl4.fromTo(
+            tl2.fromTo(
                 '.conMain-text2',
                 {
                     x: -100,
@@ -1206,8 +1482,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
             ,"<30%");
            
 
-            // // 5. 하단 설명 텍스트 등장
-            const tl5 = gsap.timeline({
+            // 3. 하단 설명 텍스트 등장
+            const tl3 = gsap.timeline({
                 scrollTrigger: {
                     trigger: '.conMain-products3',
                     start: '-500 top',
@@ -1215,7 +1491,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     invalidateOnRefresh: true,
                 },
             });
-            tl5.to('.conMain-products3', {
+            tl3.to('.conMain-products3', {
                     opacity: 1,
                 })
                 .fromTo(
@@ -1242,8 +1518,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 );
 
                 
-            // 6. bestQuality 화면 등장
-            const tl6 = gsap.timeline({
+            // 4. bestQuality 화면 등장
+            const tl4 = gsap.timeline({
                 scrollTrigger: {
                     trigger: '.section3',
                     start: '0 top',
@@ -1254,7 +1530,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     pin: true,
                 },
             });
-            tl6.to('.conQuality-bestQuality', {
+            tl4.to('.conQuality-bestQuality', {
                     opacity: 1,
                     top: '32%',
                     transform: 'translate(-50%, -50%) scale(0.3)',
@@ -1314,16 +1590,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     }
                 )
                 
-     
-     
-
-
-         
-
-          
-
-            // 11. conQuality-experts 등장
-            const tl11 = gsap.timeline({
+            // 5. conQuality-experts 등장
+            const tl5 = gsap.timeline({
                 scrollTrigger: {
                     trigger: '.section4',
                     start: '-500 top',
@@ -1331,7 +1599,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     invalidateOnRefresh: true,
                 },
             });
-            tl11.to(
+            tl5.to(
                     '.conQuality-experts-text .detail.index0',
                     {
                         opacity: 1,
@@ -1347,8 +1615,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     opacity: 1,
                 });
 
-            // 12. conFlavor 등장
-            const tl12 = gsap.timeline({
+            // 6. conFlavor 등장
+            const tl6 = gsap.timeline({
                 scrollTrigger: {
                     trigger: '.section5',
                     start: '0 top',
@@ -1356,13 +1624,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     // invalidateOnRefresh: true, 설정하면 안보임
                 },
             });
-            tl12.to('.conFlavor', {
+            tl6.to('.conFlavor', {
                 opacity: 1,
             });
 
 
-            // 13. aboutUs 등장
-            const tl13 = gsap.timeline({
+            // 7. aboutUs 등장
+            const tl7 = gsap.timeline({
             scrollTrigger: {
                 trigger: '.section6',
                 start: '0 top',
@@ -1370,7 +1638,300 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 invalidateOnRefresh: true,
             },
             });
-            tl13.to(".conAboutUs", {
+            tl7.to(".conAboutUs", {
+            opacity: 1,
+            zIndex: 10,
+            })
+            .to(".conAboutUs-title", {
+                opacity: 1,
+                duration: 1,
+            })
+            .to(".conAboutUs-descriptionBox img", {
+                opacity: 1,
+                duration: 1,
+            })
+            .to(".conAboutUs-descriptionBox .introduce", {
+                opacity: 1,
+                duration: 1,
+            })
+            .to(".conAboutUs-descriptionBox .promise", {
+                opacity: 1,
+                duration: 1,
+            })
+            .to(".conAboutUs-descriptionBox button", {
+                opacity: 1,
+                duration: 1,
+            })
+            .to(".conAboutUs .topBtn", {
+                opacity: 1,
+                duration: 1,
+            }, "<")
+            .to(".conAboutUs footer", {
+                opacity: 1,
+                duration: 1,
+            }, "<")
+
+
+
+
+
+
+
+        } else {
+            // ##########################데스크탑 구간
+            //  1. 1스크롤에 블러 제품 이미지 확대
+            const tl1 = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.section1',
+                    start: '-200 top',
+                    markers: true,
+                    invalidateOnRefresh: true,
+                },
+            });
+            tl1.to('.conMain-products', {
+                scale: 1,
+                opacity: 1,
+                filter: 'blur(0px)',
+            })
+            .set('.conMain-ellipseBox', {
+                borderRadius: '50%',
+                rotate: '-15deg',
+                width: '10vw',
+                height: '5vw',
+            })
+            .to('.conMain-ellipseBox', {
+                width: '180vw',
+                height: '180vh',
+                opacity: 1,
+            })
+                .to(
+                    '.conMain-text.beMore',
+                    {
+                        right: '8vw',
+                    },
+                    '<'
+                )
+                .to(
+                    '.conMain-text.dynamic',
+                    {
+                        left: '8vw',
+                    },
+                    '<'
+                );
+
+            
+
+            // 2. conMain-products2 제품 설명 텍스트 등장
+            var puffCounter = { var: 0 };
+            var count = document.getElementById('count');
+            const tl2 = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.section2',
+                    start: '-500 top',
+                    // scrub: 2,
+                    markers: true,
+                    invalidateOnRefresh: true,
+                },
+            });
+            tl2.fromTo(
+                '.conMain-text2',
+                {
+                    x: -100,
+                    opacity: 0,
+                },
+                {
+                    x: 0,
+                    opacity: 1,
+                }
+            )
+            .fromTo(
+                '.conMain-text3',
+                {
+                    x: 100,
+                    opacity: 0,
+                },
+                {
+                    x: 0,
+                    opacity: 1,
+                }
+            )
+            .to(puffCounter, {
+              var: 10000,
+              duration: 2,
+              onUpdate: function() {
+                count.innerHTML = Math.ceil(puffCounter.var);
+              },})
+            .fromTo(
+                '.conMain-text4',
+                {
+                    x: 100,
+                    opacity: 0,
+                },
+                {
+                    x: 0,
+                    opacity: 1,
+                }
+            ,"<30%");
+           
+
+            // 3. 하단 설명 텍스트 등장
+            const tl3 = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.conMain-products3',
+                    start: '-500 top',
+                    markers: true,
+                    invalidateOnRefresh: true,
+                },
+            });
+            tl3.to('.conMain-products3', {
+                    opacity: 1,
+                })
+                .fromTo(
+                    '.conMain-text5',
+                    {
+                        x: -100,
+                        opacity: 0,
+                    },
+                    {
+                        x: 0,
+                        opacity: 1,
+                    }
+                )
+                .fromTo(
+                    '.conMain-text6',
+                    {
+                        x: 100,
+                        opacity: 0,
+                    },
+                    {
+                        x: 0,
+                        opacity: 1,
+                    }
+                );
+
+                
+            // 4. bestQuality 화면 등장
+            const tl4 = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.section3',
+                    start: '0 top',
+                    end: '10000 bottom',
+                    markers: true,
+                    invalidateOnRefresh: true,
+                    scrub: 1,
+                    pin: true,
+                },
+            });
+            tl4.to('.conQuality-bestQuality', {
+                    opacity: 1,
+                    top: '32%',
+                    transform: 'translate(-50%, -50%) scale(0.3)',
+                })
+                .to(
+                    '.conQuality-bg.orange',
+                    {
+                        backgroundColor: '#FF560E',
+                    },
+                    '<10%'
+                )
+                .to('.conQuality-bestQuality img.afterimage', {
+                    opacity: 0,
+                    transform: 'scale(1.3)',
+                })
+                .to('.conQuality-text1 .detail.index0', {
+                    opacity: 1,
+                })
+                .to(
+                    '.conQuality-text1 .detail.index1',
+                    {
+                        opacity: 1,
+                    }
+                )
+                .to(
+                    '.conQuality-bg.purple',
+                    {
+                        x: '-100%',
+                    }
+                )
+                .to(
+                    '.conQuality-bg.purple',
+                    {
+                        x: '-100%',
+                    },
+                )
+                .to(
+                    '.conQuality-bg.blue',
+                    {
+                        x: '-100%',
+                    },
+                )
+                .to(
+                    '.conQuality-bg.blue2',
+                    {
+                        x: '-100%',
+                        delay: 1.5,
+                    },
+                )
+                .to(
+                    '.conQuality-text4 .detail span ',
+                    {
+                        opacity: 1,
+                        stagger: {
+                            each: 0.06,
+                        },
+                    }
+                )
+                
+
+            // 5. conQuality-experts 등장
+            const tl5 = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.section4',
+                    start: '-500 top',
+                    markers: true,
+                    invalidateOnRefresh: true,
+                },
+            });
+            tl5.to(
+                    '.conQuality-experts-text .detail.index0',
+                    {
+                        opacity: 1,
+                })
+                .to(
+                    '.conQuality-experts .imgExpertsWrap',
+                    {
+                        opacity: 1,
+                    },
+                    '<'
+                )
+                .to('.conQuality-experts-text .detail.index1', {
+                    opacity: 1,
+                });
+
+            // 6. conFlavor 등장
+            const tl6 = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.section5',
+                    start: '0 top',
+                    markers: true,
+                    // invalidateOnRefresh: true, 설정하면 안보임
+                },
+            });
+            tl6.to('.conFlavor', {
+                opacity: 1,
+            });
+
+
+            // 7. aboutUs 등장
+            const tl7 = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.section6',
+                start: '0 top',
+                markers: true,
+                invalidateOnRefresh: true,
+            },
+            });
+            tl7.to(".conAboutUs", {
             opacity: 1,
             zIndex: 10,
             })
@@ -1610,48 +2171,18 @@ function scrollToTop(destination) {
 
   // qualityMenu 클릭 시 스크롤 위치 이동
   qualityMenu.addEventListener("click", () => {
-    // if (mediaQueryMobile.matches) {
-    //     // 모바일에서
-    //     // scrollToTop(24000);
-    // } else if (mediaQueryTablet.matches) {
-    //     // 태블릿에서
-    //     // scrollToTop(18000);
-    // } else {
-    //     // 데스크탑에서
-    //     // scrollToTop(6550);
-    // }
     scrollToTop(section2SC + 400);
     console.log(section2SC);
   });
 
   // flavorMenu 클릭 시 스크롤 위치 이동
   flavorMenu.addEventListener("click", () => {
-    // if (mediaQueryMobile.matches) {
-    //     // 모바일에서
-    //     // scrollToTop(41000);
-    // } else if (mediaQueryTablet.matches) {
-    //     // 태블릿에서
-    //     // scrollToTop(41000);
-    // } else {
-    //     // 데스크탑에서
-    //     scrollToTop(38000);
-    // }
     scrollToTop(section5SC + 300);
     console.log(section5SC);
   });
 
   // aboutUsMenu 클릭 시 스크롤 위치 이동
   aboutUsMenu.addEventListener("click", () => {
-    // if (mediaQueryMobile.matches) {
-    //     // 모바일에서
-    //     // scrollToTop(56000);
-    // } else if (mediaQueryTablet.matches) {
-    //     // 태블릿에서
-    //     // scrollToTop(50000);
-    // } else {
-    //     // 데스크탑에서
-    //     scrollToTop(47000);
-    // }
     scrollToTop(section6SC + 300);
     console.log(section6SC);
   });
@@ -1665,8 +2196,6 @@ function scrollToTop(destination) {
         // 모든 스크롤트리거 초기화
         ScrollTrigger.clearScrollMemory();
 
-        // puffCounter 초기화 및 UI 업데이트
-        puffCounter.var = 0;
         
 
         
